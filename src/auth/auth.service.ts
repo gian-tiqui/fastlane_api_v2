@@ -64,8 +64,8 @@ export class AuthService {
     };
   }
 
-  async refresh(_refreshToken: RefreshTokenDto) {
-    const { refreshToken } = _refreshToken;
+  async refresh(refreshTokenDto: RefreshTokenDto) {
+    const { refreshToken } = refreshTokenDto;
     const user = await this.prisma.user.findFirst({
       where: {
         refreshToken: refreshToken,
@@ -85,12 +85,6 @@ export class AuthService {
       where: { id: userId },
       data: { refreshToken: null },
     });
-  }
-
-  async getAll() {
-    const users = await this.prisma.user.findMany();
-
-    return users;
   }
 
   private async signToken(userId: number, email: string): Promise<string> {

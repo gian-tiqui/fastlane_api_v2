@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -24,12 +24,7 @@ export class AuthController {
   }
 
   @Post('refresh')
-  refresh(@Body() refreshToken: RefreshTokenDto) {
-    return this.authService.refresh(refreshToken);
-  }
-
-  @Get()
-  getAll() {
-    return this.authService.getAll();
+  refresh(@Body() refreshTokenDto: RefreshTokenDto) {
+    return this.authService.refresh(refreshTokenDto);
   }
 }
