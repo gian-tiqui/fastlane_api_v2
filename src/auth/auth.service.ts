@@ -28,9 +28,15 @@ export class AuthService {
           firstName: registerDto.firstName,
           middleName: registerDto.middleName,
           lastName: registerDto.lastName,
-          role: registerDto.role,
           dob: registerDto.dob,
           gender: registerDto.gender,
+          address: registerDto.address,
+          city: registerDto.city,
+          lastNamePrefix: registerDto.lastNamePrefix,
+          state: registerDto.state,
+          suffix: registerDto.suffix,
+          zipCode: registerDto.zipCode,
+          preferredName: registerDto.preferredName,
         },
       });
       return user;
