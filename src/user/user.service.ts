@@ -15,8 +15,11 @@ export class UserService {
     };
   }
 
-  async getById(id: number) {
-    const user = await this.prismaService.user.findFirst({ where: { id } });
+  async getById(_id) {
+    const { id } = _id;
+    const user = await this.prismaService.user.findFirst({
+      where: { id: Number(id) },
+    });
 
     if (!user) {
       throw new NotFoundException('User not found');
