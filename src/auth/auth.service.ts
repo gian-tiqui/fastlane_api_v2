@@ -94,7 +94,7 @@ export class AuthService {
   private async signRefreshToken(userId: number): Promise<string> {
     return this.jwtService.signAsync(
       { sub: userId },
-      { expiresIn: process.env.RT_EXP },
+      { expiresIn: process.env.RT_EXP, secret: process.env.RT_SECRET },
     );
   }
 }
