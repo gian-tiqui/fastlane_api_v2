@@ -8,6 +8,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Injectable()
 export class AuthService {
@@ -63,9 +64,12 @@ export class AuthService {
     };
   }
 
-  async refresh(refreshToken: string) {
+  async refresh(_refreshToken: RefreshTokenDto) {
+    const { refreshToken } = _refreshToken;
     const user = await this.prisma.user.findFirst({
-      where: { refreshToken },
+      where: {
+        refreshToken: refreshToken,
+      },
     });
 
     if (!user) {
@@ -81,6 +85,12 @@ export class AuthService {
       where: { id: userId },
       data: { refreshToken: null },
     });
+  }
+
+  async getAll() {
+    const users = await this.prisma.user.findMany();
+
+    return users;
   }
 
   private async signToken(userId: number, email: string): Promise<string> {
