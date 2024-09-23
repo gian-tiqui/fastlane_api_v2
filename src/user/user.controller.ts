@@ -1,22 +1,14 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
+import { JwtAuthGuard } from 'src/auth/guards/auth.guard';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAll() {
     return this.userService.getAll();
-  }
-
-  @Get(':id')
-  getById(@Param('id') id: number) {
-    return this.userService.getById(id);
-  }
-
-  @Delete(':id')
-  deleteById(@Param('id') id: number) {
-    return this.userService.deleteById(id);
   }
 }
