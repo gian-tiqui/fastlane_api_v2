@@ -9,14 +9,14 @@ import { LoginDto } from './dto/login.dto';
 import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
-
-//dev
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
 
   async register(registerDto: RegisterDto) {
@@ -100,9 +100,11 @@ export class AuthService {
   }
 
   private async signRefreshToken(userId: number): Promise<string> {
+    const refreshTokenSecret = this.configService.get<string>('RT_SECRET');
+    const refreshTokenExpiration = this.configService.get<string>('RT_EXP');
     return this.jwtService.signAsync(
       { sub: userId },
-      { expiresIn: process.env.RT_EXP, secret: process.env.RT_SECRET },
+      { expiresIn: refreshTokenExpiration, secret: refreshTokenSecret },
     );
   }
 }
