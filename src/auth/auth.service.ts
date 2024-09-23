@@ -10,8 +10,6 @@ import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 
-//dev
-
 @Injectable()
 export class AuthService {
   constructor(
