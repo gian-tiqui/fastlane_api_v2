@@ -1,3 +1,14 @@
+<pre>
+DATABASE_URL="mysql://root:@localhost:3306/db_fastlane"
+AT_SECRET=AJSHDKAKJSDHAJSKDHJAKSHDJAYWEBAUGH123762318
+RT_SECRET=KALSMDKLAMSDKALJCAKJNSDCJKAHNSJI1672317826
+AT_EXP=14m
+RT_EXP=7d
+SALT=10
+NODE_ENV=dev
+PORT=8080
+</pre>
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
