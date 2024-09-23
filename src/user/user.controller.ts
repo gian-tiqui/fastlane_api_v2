@@ -1,6 +1,7 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from 'src/auth/guards/auth.guard';
+import { UserIdDto } from './dto/user-id.dto';
 
 @Controller('users')
 export class UserController {
@@ -13,7 +14,7 @@ export class UserController {
   }
 
   @Get(':id')
-  getById(@Param('id') id) {
-    return this.userService.getById(id);
+  getById(@Param('id') userIdDto: UserIdDto) {
+    return this.userService.getById(userIdDto);
   }
 }

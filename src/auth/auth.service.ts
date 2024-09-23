@@ -85,6 +85,7 @@ export class AuthService {
     }
 
     const accessToken = await this.signToken(user.id, user.email);
+
     return { access_token: accessToken };
   }
 
@@ -102,6 +103,7 @@ export class AuthService {
   private async signRefreshToken(userId: number): Promise<string> {
     const refreshTokenSecret = this.configService.get<string>('RT_SECRET');
     const refreshTokenExpiration = this.configService.get<string>('RT_EXP');
+
     return this.jwtService.signAsync(
       { sub: userId },
       { expiresIn: refreshTokenExpiration, secret: refreshTokenSecret },
