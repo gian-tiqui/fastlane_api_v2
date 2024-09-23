@@ -30,7 +30,6 @@ describe('AuthService', () => {
 
   describe('register', () => {
     it('should successfully register a user', async () => {
-      // Arrange
       const registerDto: RegisterDto = {
         email: 'test@example.com',
         password: 'Password123!',

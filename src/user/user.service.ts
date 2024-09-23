@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
+import { UserIdDto } from './dto/user-id.dto';
 
 @Injectable()
 export class UserService {
@@ -15,8 +16,8 @@ export class UserService {
     };
   }
 
-  async getById(_id) {
-    const { id } = _id;
+  async getById(userIdDto: UserIdDto) {
+    const { id } = userIdDto;
     const user = await this.prismaService.user.findFirst({
       where: { id: Number(id) },
     });
